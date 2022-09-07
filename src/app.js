@@ -45,6 +45,7 @@ App = {
     loadAccount: async () => {
         // Set the current blockchain account
         const accounts = await web3.eth.getAccounts()
+        web3.eth.defaultAccount = accounts[0]
         App.account = accounts[0]
     },
 
@@ -105,6 +106,13 @@ App = {
             //Show the task
             $newTaskTemplate.show()
         }        
+    },
+
+    createTask: async () => {
+        App.setLoading(true)
+        const content = $('#newTask').val()
+        await App.todoList.createTask(content, {from: web3.eth.defaultAccount})
+        window.location.reload()
     },
 
     setLoading: (boolean) => {
