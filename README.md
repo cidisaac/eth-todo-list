@@ -11,5 +11,5 @@ Todo-list on eth blockchain
 
 ## Run
 
-`truffle migrate --reset`
-`npm run dev`
+* `truffle migrate --reset`
+* `npm run dev`
