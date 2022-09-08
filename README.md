@@ -13,6 +13,3 @@ Todo-list on eth blockchain
 
 * `truffle migrate --reset`
 * `npm run dev`
-
-Additionaly I had to install truffle contract
-`npm i @truffle/contract`
