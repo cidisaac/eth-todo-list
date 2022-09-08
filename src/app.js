@@ -91,10 +91,10 @@ App = {
             //Create the html for the task
             const $newTaskTemplate = $taskTemplate.clone()
             $newTaskTemplate.find('.content').html(taskContent)
-            $newTaskTemplate.find('.input')
-                            .prop('name', taskId)
-                            .prop('checked', taskCompleted)
-                            // .on('click', App.toggleCompleted)
+            const input = $newTaskTemplate.find('input')
+            .attr('name', taskId)
+            .attr('checked', taskCompleted)
+            .click(App.toggleCompleted)            
 
             //Put the task in the correct list
             if (taskCompleted) {
@@ -112,6 +112,16 @@ App = {
         App.setLoading(true)
         const content = $('#newTask').val()
         await App.todoList.createTask(content, {from: web3.eth.defaultAccount})
+        window.location.reload()
+    },
+    
+    toggleCompleted: async (e) => {
+        console.log('CB BREO', e.target)
+        App.setLoading(true)
+        console.log('INSTA BRO')
+        const taskId = e.target.name
+        console.log('ID: ', taskId)
+        await App.todoList.toggleCompleted(taskId, {from: web3.eth.defaultAccount})
         window.location.reload()
     },
 
